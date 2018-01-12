@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.org/
   specs:
     daemons (1.2.4)
     eventmachine (1.2.0.1)

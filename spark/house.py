@@ -1,10 +1,10 @@
-# 房屋数据练习1
+# 房屋数据练习 - 加载数据
 lines = sc.textFile('/home/xxx/i9000-training/spark/house-data/cal_housing.data')
 header = sc.textFile('/home/xxx/i9000-training/spark/house-data/cal_housing.domain')
 header.collect()
 lines.take(2)
 
-# 房屋数据练习2
+# 房屋数据练习 - 创建DataFrame
 from pyspark.sql import SQLContext
 from pyspark.sql.types import *
 f = lambda line: [float(sp) for sp in line.split(',')]
@@ -15,7 +15,7 @@ schema = StructType(fields)
 sqlContext = SQLContext(sc)
 df = sqlContext.createDataFrame(rows, schema)
 
-# 房屋数据练习3
+# 房屋数据练习 - DataFrame相关操作
 df.describe().show()
 df.show(5)
 df.printSchema()
@@ -23,7 +23,6 @@ df.select('population', 'totalBedrooms').show(5)
 df.filter(df['housingMedianAge'] > 40).show(5)
 df.groupBy("housingMedianAge").count().show(5)
 
-# 房屋数据练习4
 df.select('medianHouseValue').show(5)
 from pyspark.sql.functions import *
 df = df.withColumn('medianHouseValue', col('medianHouseValue')/100000)
